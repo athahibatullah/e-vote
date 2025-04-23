@@ -1,0 +1,23 @@
+title E-Vote
+actor Voter
+participant Login
+participant Authentication Server
+participant Voting Page
+participant Server
+participant Database
+
+Voter->Login:Voter attempt to login
+Login->Authentication Server:Checking credential
+Voter<--Authentication Server:Invalid credential
+Authentication Server->Voting Page:Voter successfully login
+Voting Page->Voting Page:User choose candidate
+Voting Page->Server:Request validation
+Voting Page<--Server:Invalid request
+Voter<--Voting Page:Repeated invalid request
+Server->Database:Valid request
+Database->Database:Record vote
+Server<--Database:Failed to record vote
+Server-->Database:Repeat vote record
+Server<-Database:Successfully record vote
+Voting Page<-Server:Successfully record vote
+Voter<-Voting Page:Logout user after record vote
