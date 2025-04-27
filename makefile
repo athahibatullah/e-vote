@@ -23,3 +23,7 @@ rebuild-backend:
 # Restart backend service
 restart-backend:
 	docker compose restart backend
+
+# log service
+log:
+	docker compose logs -f backend
