@@ -13,7 +13,7 @@ import (
 
 func Seed(db *gorm.DB) {
 	// Auto-migrate tables (you can remove this if migrations are separate)
-	db.AutoMigrate(&models.AppConfig{}, &models.Candidate{}, &models.Voter{})
+	db.AutoMigrate(&models.AppConfig{}, &models.Candidate{}, &models.Voter{}, &models.OTPSession{})
 
 	// Seed app config
 	appConfigs := []models.AppConfig{
@@ -49,12 +49,14 @@ func Seed(db *gorm.DB) {
 		{
 			ID:         uuid.NewString(),
 			VoterName:  "Alice",
+			Email:      "",
 			Password:   hashPassword(""),
 			VoteStatus: false,
 		},
 		{
 			ID:         uuid.NewString(),
-			VoterName:  "Bob",
+			VoterName:  "",
+			Email:      "",
 			Password:   hashPassword(""),
 			VoteStatus: false,
 		},
